@@ -55,8 +55,8 @@ AUTO_TIME   equ 160         ; rendered frames before auto-advancing
 BUF         equ 0xC000      ; 2048 bytes: 128x128x1bpp, VRAM tile order
 EDGE_L      equ 0xC800      ; 128 bytes: left x per scanline (polygon fill)
 EDGE_R      equ 0xC880      ; 128 bytes: right x per scanline
-SX          equ 0xC960      ; 32 bytes: projected x per vertex
-SY          equ 0xC980      ; 32 bytes: projected y per vertex  (SY = SX+0x20)
+SX          equ 0xCB00      ; 128 bytes: projected x per vertex
+SY          equ 0xCB80      ; 128 bytes: projected y per vertex (SY = SX+0x80)
 
 VARS        equ 0xCA00
 ang_x       equ VARS+0

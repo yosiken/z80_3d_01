@@ -9,7 +9,7 @@ GEN := src/gen_tables.inc src/gen_objects.inc src/gen_font.inc
 
 all: $(ROM)
 
-$(GEN): tools/gen_tables.py
+$(GEN): tools/gen_tables.py tools/obj2inc.py $(wildcard models/*.obj)
 	$(PYTHON) tools/gen_tables.py
 
 gen: $(GEN)

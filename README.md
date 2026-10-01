@@ -41,6 +41,16 @@ make test       # 同梱のテスト用エミュレータで 1500 フレーム�
 Emulicious / MEKA / Kega Fusion などの SMS エミュレータ、または実機用フラッシュカートで実行できます
 (ヘッダのチェックサムは書き込み済みなので、海外版 SMS の BIOS チェックも通る想定です)。
 
+### 自作モデル (OBJ) の追加
+
+`models/` に Wavefront OBJ を置いて `make` するだけで、オブジェクトとして追加されます
+(ボタン 2 で切替)。FBX などは Blender で OBJ に書き出してください。
+
+- 変換内容: 中心合わせ・半径 54 に正規化・8bit 化、同一頂点の結合、縮退面の除去、
+  凹多角形の三角形分割、面法線の計算 (`tools/obj2inc.py`)
+- 制限: 頂点 128 / 辺 255 / 面 255 まで。目安は 30〜80 ポリゴン
+- Z ソートは無いため、凹んだ形状は陰線消去・シェーディングで正しく重ならない (ワイヤーは常に正しい)
+
 ### 構成
 
 ```
@@ -50,6 +60,8 @@ tools/z80asm.py        小型 2 パス Z80 アセンブラ (sjasmplus 風の文�
 tools/smsheader.py     SEGA ヘッダ ("TMR SEGA") のチェックサム書き込み
 tools/smsemu.py        検証用ヘッドレス SMS エミュレータ (Z80 + VDP Mode 2 + PNG 出力)
 tools/gen_tables.py    sin / 透視 / 二乗 / ディザ / 光源テーブル、多面体 (凸包) とフォントの生成
+tools/obj2inc.py       OBJ モデル変換 (gen_tables.py から呼ばれる)
+models/                自作モデル (*.obj) 置き場
 ```
 
 ## 技術メモ
